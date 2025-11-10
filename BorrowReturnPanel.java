@@ -90,7 +90,16 @@ public class BorrowReturnPanel extends JPanel {
     }
 
     private void generatePDF() {
-        // Placeholder for PDF generation - requires iText library
-        JOptionPane.showMessageDialog(this, "PDF generation requires iText library. Feature not implemented yet.");
+        try {
+            com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
+            com.itextpdf.text.pdf.PdfWriter.getInstance(doc, new java.io.FileOutputStream("borrow_slip.pdf"));
+            doc.open();
+            doc.add(new com.itextpdf.text.Paragraph("Borrow Slip"));
+            doc.add(new com.itextpdf.text.Paragraph("Generated on: " + java.time.LocalDate.now()));
+            doc.close();
+            JOptionPane.showMessageDialog(this, "PDF generated: borrow_slip.pdf");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "PDF generation failed: " + e.getMessage());
+        }
     }
 }

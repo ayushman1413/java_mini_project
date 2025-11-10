@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class AddBookPanel extends JPanel {
     public AddBookPanel(Library library) {
@@ -16,8 +17,12 @@ public class AddBookPanel extends JPanel {
         JComboBox<String> categoryCombo = new JComboBox<>(new String[]{"Fiction", "Science", "History", "Biography", "Other"});
         JLabel isbnLabel = new JLabel("ISBN:");
         JTextField isbnField = new JTextField(20);
+        JButton fetchBtn = new JButton("Fetch Info");
         JLabel copiesLabel = new JLabel("Copies:");
         JTextField copiesField = new JTextField(5);
+        JLabel coverLabel = new JLabel("Cover Image:");
+        JTextField coverField = new JTextField(20);
+        JButton browseBtn = new JButton("Browse");
         JButton addBtn = new JButton("Add Book");
 
         c.gridx = 0; c.gridy = 0; add(titleLabel, c);
@@ -28,9 +33,37 @@ public class AddBookPanel extends JPanel {
         c.gridx = 1; c.gridy = 2; add(categoryCombo, c);
         c.gridx = 0; c.gridy = 3; add(isbnLabel, c);
         c.gridx = 1; c.gridy = 3; add(isbnField, c);
+        c.gridx = 2; c.gridy = 3; add(fetchBtn, c);
         c.gridx = 0; c.gridy = 4; add(copiesLabel, c);
         c.gridx = 1; c.gridy = 4; add(copiesField, c);
-        c.gridx = 1; c.gridy = 5; add(addBtn, c);
+        c.gridx = 0; c.gridy = 5; add(coverLabel, c);
+        c.gridx = 1; c.gridy = 5; add(coverField, c);
+        c.gridx = 2; c.gridy = 5; add(browseBtn, c);
+        c.gridx = 1; c.gridy = 6; add(addBtn, c);
+
+        fetchBtn.addActionListener(e -> {
+            String isbn = isbnField.getText().trim();
+            if (!isbn.isEmpty()) {
+                try {
+                    String[] info = ApiUtil.fetchBookInfo(isbn);
+                    if (info != null) {
+                        titleField.setText(info[0]);
+                        authorField.setText(info[1]);
+                        categoryCombo.setSelectedItem(info[2]);
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Failed to fetch info: " + ex.getMessage());
+                }
+            }
+        });
+
+        browseBtn.addActionListener(e -> {
+            JFileChooser chooser = new JFileChooser();
+            if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                File file = chooser.getSelectedFile();
+                coverField.setText(file.getAbsolutePath());
+            }
+        });
 
         addBtn.addActionListener(e -> {
             String title = titleField.getText().trim();
@@ -38,6 +71,7 @@ public class AddBookPanel extends JPanel {
             String category = (String) categoryCombo.getSelectedItem();
             String isbn = isbnField.getText().trim();
             String copiesStr = copiesField.getText().trim();
+            String cover = coverField.getText().trim();
             if (title.isEmpty() || author.isEmpty() || category == null) {
                 JOptionPane.showMessageDialog(this, "Please enter title, author, and category.");
                 return;
@@ -50,11 +84,13 @@ public class AddBookPanel extends JPanel {
                 return;
             }
             Book b = library.addBook(title, author, category, isbn, copies);
+            b.coverImagePath = cover;
             JOptionPane.showMessageDialog(this, "Added: " + b);
             titleField.setText("");
             authorField.setText("");
             isbnField.setText("");
             copiesField.setText("");
+            coverField.setText("");
         });
     }
 }

@@ -25,7 +25,7 @@ public class ViewBooksPanel extends JPanel {
         searchPanel.add(searchField);
         add(searchPanel, BorderLayout.NORTH);
 
-        model = new DefaultTableModel(new Object[]{"ID","Title","Author","Category","ISBN","Copies","Status","BorrowedBy","DueDate"}, 0) {
+        model = new DefaultTableModel(new Object[]{"ID","Title","Author","Category","ISBN","Copies","Status","BorrowedBy","DueDate","Cover"}, 0) {
             @Override public boolean isCellEditable(int row, int column) { return false; }
         };
         table = new JTable(model);
@@ -63,9 +63,11 @@ public class ViewBooksPanel extends JPanel {
         model.setRowCount(0);
         List<Book> books = library.listAllBooks();
         for (Book b : books) {
+            String status = (b.isBorrowed ? "Borrowed" : "Available");
+            if (b.copiesAvailable <= 1) status += " (Low Stock)";
             model.addRow(new Object[]{b.id, b.title, b.author, b.category, b.isbn, b.copiesAvailable,
-                    (b.isBorrowed ? "Borrowed":"Available"),
-                    (b.borrowedByUserId==null? "": b.borrowedByUserId), (b.dueDate==null? "": b.dueDate)});
+                    status,
+                    (b.borrowedByUserId==null? "": b.borrowedByUserId), (b.dueDate==null? "": b.dueDate), b.coverImagePath});
         }
     }
 
