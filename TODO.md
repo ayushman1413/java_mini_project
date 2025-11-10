@@ -11,38 +11,93 @@
 - [x] Create MainFrame.java
 - [x] Create App.java
 
-## New Enhancement Tasks
+## Extra Unique & Smart Features Implementation
 
-### 1. Enhance Data Models
-- [ ] Update Book.java: Add category (String), ISBN (String), copiesAvailable (int, default 1), dueDate (LocalDate)
-- [ ] Update User.java: Add role (String, e.g., "Admin" or "User"), studentId (String)
-- [ ] Update Library.java: Modify borrow/return to handle copies (decrement/increment copiesAvailable), add methods for stats (totalBooks, issuedBooks, availableBooks, activeUsers), fine calculation (daysLate * 5)
+### 1. Student Membership System
+- [ ] Update User.java: Add membershipId (auto-increment), membershipType ("Basic"/"Premium"), totalBooksBorrowed, fineHistory (list of maps), securityQuestion/Answer
+- [ ] Add Membership.java: Static counter for membership ID generation
+- [ ] Update Library.java: Add membership logic, borrowing limits based on type (Basic: 3 books, Premium: 5), track total borrowed per member
 
-### 2. Add Intermediate Features
-- [ ] Implement Due Date Tracking: In Library.borrowBook, set dueDate = borrowDate + 7 days using LocalDate
-- [ ] Implement Fine Calculation: In Library.returnBook, calculate fine if returned late (days late * ₹5/day), show in UI
-- [ ] Add Search & Filter in ViewBooksPanel: Add JTextField for search (by title/author/category), filter JTable rows dynamically
-- [ ] Create Statistics Dashboard: New StatisticsPanel.java with labels for total books, issued books, available books, active users; add button in MainFrame
-- [ ] Implement Login System: Create LoginDialog.java at startup, set user role; hide admin buttons (add/delete) for non-admin users
-- [ ] Add Book Category System: Update AddBookPanel with JComboBox for categories (Fiction, Science, History, etc.)
-- [ ] Add Export Reports: In ViewBooksPanel, add "Export Borrowed" button, export borrowed books list to CSV file
+### 2. Book Stock Management
+- [ ] Update ViewBooksPanel.java: Show copies available, alert if stock < 2 (“Low Stock Warning”)
+- [ ] Update Library.java: Auto-update copies on borrow/return
 
-### 3. Add Advanced Features
-- [ ] Implement Dark Mode: Add toggle button in MainFrame, switch LookAndFeel between light and dark
-- [ ] Generate Borrow Slip (PDF): Add "Generate PDF" button in BorrowReturnPanel, use iText library to create PDF receipt
-- [ ] Add Notification System: On app load, check for books due today/tomorrow, show JOptionPane reminders
-- [ ] Implement Authentication + Role-Based Access: Integrate with login, disable add/delete for users, enable borrow/return/view
+### 3. Auto Reminder System
+- [ ] Update MainFrame.java: Check due dates on startup, show JOptionPane for close/overdue
+- [ ] Add EmailUtil.java: Integrate JavaMail for email reminders (advanced)
 
-### 4. UI Updates
-- [ ] Update AddBookPanel: Add JTextFields for category, ISBN, copies; update layout
-- [ ] Update ViewBooksPanel: Add search JTextField, export button, update table columns (add Category, ISBN, Copies, DueDate)
-- [ ] Update BorrowReturnPanel: Show due date in borrow confirmation, show fine on return
-- [ ] Create new panels: StatisticsPanel.java, LoginDialog.java
-- [ ] Update MainFrame: Add stats button, dark mode toggle, integrate LoginDialog before showing main frame
+### 4. Book Reservation System
+- [ ] Add Reservation.java: userId, bookId, reserveDate
+- [ ] Update Library.java: Add reservation logic, notify when returned
+- [ ] Add ReservationPanel.java: UI for reserving books
 
-### 5. Data Persistence & Testing
-- [ ] Ensure new fields are serializable in Book.java and User.java
-- [ ] Update Storage.java if needed for compatibility
-- [ ] Install required libraries: Download and add iText jar for PDF generation
-- [ ] Test borrow/return with dates, search, export, login
-- [ ] Run the app to verify UI and data persistence
+### 5. Activity Log / History
+- [ ] Add ActivityLog.java: timestamp, action, details
+- [ ] Update Library.java: Log every borrow/return action
+- [ ] Add ActivityLogPanel.java: JTable to show logs
+
+### 6. Generate Reports
+- [ ] Add ReportPanel.java: Export issued/overdue books, members to PDF/CSV using iText
+
+### 7. Smart Recommendation
+- [ ] Update Book.java: Add similarBooks list
+- [ ] Update Library.java: Recommend similar books on borrow
+
+### 8. Dark Mode / Theme Switcher
+- [ ] Add ThemeManager.java: Persist theme preference in file
+- [ ] Update MainFrame.java: Toggle button with persistent dark/light mode
+
+### 9. Login & Authentication
+- [ ] Update LoginDialog.java: Add forgot password with security question
+- [ ] Role-based: Admin full, Librarian limited, Student view/borrow only
+
+### 10. Online Book Information Fetch
+- [ ] Add ApiUtil.java: Fetch details from Google Books API by ISBN
+- [ ] Update AddBookPanel.java: Auto-fetch on ISBN input
+
+### 11. Dashboard / Home Screen
+- [ ] Add DashboardPanel.java: Summary cards, charts with JFreeChart
+
+### 12. Book Cover Display
+- [ ] Update Book.java: Add coverImagePath
+- [ ] Update AddBookPanel.java: Upload image
+- [ ] Update ViewBooksPanel.java: Show small cover preview
+
+### 13. Fine Payment Record
+- [ ] Update User.java: Fine history with paid/unpaid status
+- [ ] Update BorrowReturnPanel.java: Show fine on return, mark paid
+
+### 14. Forgot Password System
+- [ ] Update LoginDialog.java: Security question reset
+
+### 15. Notification Panel
+- [ ] Add NotificationPanel.java: Sidebar with due/overdue alerts
+
+### 16. Event Calendar
+- [ ] Add CalendarPanel.java: Highlight due dates
+
+### 17. Multi-language Support
+- [ ] Add LanguageManager.java: ResourceBundles for English/Hindi
+
+### 18. Import/Export Data
+- [ ] Update Library.java: Import/export books/users to CSV
+
+### 19. Auto Backup
+- [ ] Update MainFrame.java: Timer for auto-save every few minutes
+
+### 20. About / Help Section
+- [ ] Add AboutPanel.java: Developer info
+
+### Extra Add-ons
+- [ ] Splash Screen: Loading animation on start
+- [ ] Animated transitions: Between panels
+- [ ] Book QR Code: Generate with ZXing
+- [ ] Sound Effects: On issue/return
+- [ ] Cloud Sync: Placeholder for Firebase
+
+### Dependencies & Setup
+- [ ] Install libraries: iText (PDF), JFreeChart (charts), JavaMail (email), ZXing (QR), download jars and add to classpath
+
+### Testing
+- [ ] Test all features: Membership limits, stock alerts, reservations, logs, reports, themes, notifications, etc.
+- [ ] Run app to verify integrations
