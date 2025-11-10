@@ -1,4 +1,4 @@
- import javax.swing.*;
+import javax.swing.*;
 import java.io.*;
 import java.util.Properties;
 
@@ -42,7 +42,7 @@ public class ThemeManager {
         } else {
             // Reset to defaults
             try {
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeel());
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception e) {
                 e.printStackTrace();
             }
