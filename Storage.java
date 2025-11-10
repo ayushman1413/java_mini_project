@@ -1,27 +1,23 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
 
 public class Storage {
-    private List<Book> books;
-
-    public Storage() {
-        books = new ArrayList<>();
-    }
-
-    public void addBook(Book book) {
-        books.add(book);
-    }
-
-    public List<Book> getAllBooks() {
-        return new ArrayList<>(books);
-    }
-
-    public Book findBookByIsbn(String isbn) {
-        for (Book book : books) {
-            if (book.getIsbn().equals(isbn)) {
-                return book;
-            }
+    public static void save(Library lib, String filename) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(lib);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return null;
+    }
+
+    public static Library load(String filename) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            Object obj = ois.readObject();
+            if (obj instanceof Library) return (Library) obj;
+        } catch (FileNotFoundException fnf) {
+            // no saved data yet
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Library();
     }
 }
