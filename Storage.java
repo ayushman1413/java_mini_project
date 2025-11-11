@@ -14,7 +14,6 @@ public class Storage {
             Object obj = ois.readObject();
             if (obj instanceof Library) return (Library) obj;
         } catch (FileNotFoundException fnf) {
-            // no saved data yet
         } catch (Exception e) {
             e.printStackTrace();
         }
