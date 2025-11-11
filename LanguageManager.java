@@ -21,13 +21,13 @@ public class LanguageManager {
         try {
             return bundle.getString(key);
         } catch (MissingResourceException e) {
-            return key; // fallback
+            return key;  
         }
     }
 
     public static void toggleLanguage() {
         if (currentLocale.equals(Locale.ENGLISH)) {
-            setLocale(new Locale("hi", "IN")); // Hindi
+            setLocale(new Locale("hi", "IN")); 
         } else {
             setLocale(Locale.ENGLISH);
         }

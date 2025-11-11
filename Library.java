@@ -13,8 +13,6 @@ public class Library implements Serializable {
     public List<ActivityLog> activityLogs = new ArrayList<>();
     public int nextBookId = 1;
     public int nextUserId = 1;
-
-    // Books
     public Book addBook(String title, String author, String category, String isbn, int copies) {
         Book b = new Book(nextBookId++, title, author, category, isbn, copies);
         books.put(b.id, b);
@@ -166,6 +164,7 @@ public class Library implements Serializable {
 
     // Get activity logs
     public List<ActivityLog> getActivityLogs() {
+        if (activityLogs == null) activityLogs = new ArrayList<>();
         return new ArrayList<>(activityLogs);
     }
 
