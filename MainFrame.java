@@ -21,6 +21,7 @@ public class MainFrame extends JFrame {
     private NotificationPanel notificationPanel;
     private CalendarPanel calendarPanel;
     private AboutPanel aboutPanel;
+    private EditUserPanel editUserPanel;
     private JPanel cards;
     private Timer autoBackupTimer;
 
@@ -50,10 +51,11 @@ public class MainFrame extends JFrame {
         JButton btnNotifications = new JButton("Notifications");
         JButton btnCalendar = new JButton("Calendar");
         JButton btnAbout = new JButton("About");
+        JButton btnEditUsers = new JButton("Edit Users");
         JButton btnAddUser = new JButton(LanguageManager.get("menu.adduser"));
         JButton btnDarkMode = new JButton(LanguageManager.get("menu.dark"));
         JButton btnLang = new JButton(LanguageManager.get("menu.lang"));
-        top.add(btnView); top.add(btnAdd); top.add(btnBorrow); top.add(btnStats); top.add(btnReserve); top.add(btnLogs); top.add(btnReports); top.add(btnDashboard); top.add(btnNotifications); top.add(btnCalendar); top.add(btnAbout); top.add(btnAddUser); top.add(btnDarkMode); top.add(btnLang);
+        top.add(btnView); top.add(btnAdd); top.add(btnBorrow); top.add(btnStats); top.add(btnReserve); top.add(btnLogs); top.add(btnReports); top.add(btnDashboard); top.add(btnNotifications); top.add(btnCalendar); top.add(btnAbout); top.add(btnEditUsers); top.add(btnAddUser); top.add(btnDarkMode); top.add(btnLang);
         add(top, BorderLayout.NORTH);
 
         // Cards area
@@ -69,6 +71,7 @@ public class MainFrame extends JFrame {
         notificationPanel = new NotificationPanel(library);
         calendarPanel = new CalendarPanel(library);
         aboutPanel = new AboutPanel();
+        editUserPanel = new EditUserPanel(library);
 
         cards.add(viewBooksPanel, "VIEW");
         cards.add(addBookPanel, "ADD");
@@ -81,12 +84,14 @@ public class MainFrame extends JFrame {
         cards.add(notificationPanel, "NOTIFICATIONS");
         cards.add(calendarPanel, "CALENDAR");
         cards.add(aboutPanel, "ABOUT");
+        cards.add(editUserPanel, "EDITUSERS");
         add(cards, BorderLayout.CENTER);
 
         // Role-based access
         if (!"Admin".equals(loggedInUser.role) && !"Librarian".equals(loggedInUser.role)) {
             btnAdd.setEnabled(false);
             btnAddUser.setEnabled(false);
+            btnEditUsers.setEnabled(false);
             btnReserve.setEnabled(false);
             btnLogs.setEnabled(false);
             btnReports.setEnabled(false);
@@ -145,6 +150,9 @@ public class MainFrame extends JFrame {
         });
         btnAbout.addActionListener(e -> {
             ((CardLayout)cards.getLayout()).show(cards, "ABOUT");
+        });
+        btnEditUsers.addActionListener(e -> {
+            ((CardLayout)cards.getLayout()).show(cards, "EDITUSERS");
         });
         btnDarkMode.addActionListener(e -> toggleDarkMode());
         btnLang.addActionListener(e -> toggleLanguage());

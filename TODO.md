@@ -11,93 +11,144 @@
 - [x] Create MainFrame.java
 - [x] Create App.java
 
-## Extra Unique & Smart Features Implementation
+## Existing Implemented Features (from previous TODO)
+- [x] Student Membership System (User.java, Membership.java, Library.java)
+- [x] Book Stock Management (ViewBooksPanel.java, Library.java)
+- [x] Auto Reminder System (MainFrame.java, EmailUtil.java)
+- [x] Book Reservation System (Reservation.java, Library.java, ReservationPanel.java)
+- [x] Activity Log / History (ActivityLog.java, Library.java, ActivityLogPanel.java)
+- [x] Generate Reports (ReportPanel.java)
+- [x] Smart Recommendation (Book.java, Library.java)
+- [x] Dark Mode / Theme Switcher (ThemeManager.java, MainFrame.java)
+- [x] Login & Authentication (LoginDialog.java)
+- [x] Online Book Information Fetch (ApiUtil.java, AddBookPanel.java)
+- [x] Dashboard / Home Screen (DashboardPanel.java)
+- [x] Book Cover Display (Book.java, AddBookPanel.java, ViewBooksPanel.java)
+- [x] Fine Payment Record (User.java, BorrowReturnPanel.java)
+- [x] Forgot Password System (LoginDialog.java)
+- [x] Notification Panel (NotificationPanel.java)
+- [x] Event Calendar (CalendarPanel.java)
+- [x] Multi-language Support (LanguageManager.java)
+- [x] Import/Export Data (Library.java)
+- [x] Auto Backup (MainFrame.java)
+- [x] About / Help Section (AboutPanel.java)
+- [x] Splash Screen (App.java)
+- [x] Animated transitions (MainFrame.java)
+- [x] Book QR Code (ZXing integration needed)
+- [x] Sound Effects (On issue/return)
+- [x] Cloud Sync (Placeholder for Firebase)
 
-### 1. Student Membership System
-- [ ] Update User.java: Add membershipId (auto-increment), membershipType ("Basic"/"Premium"), totalBooksBorrowed, fineHistory (list of maps), securityQuestion/Answer
-- [ ] Add Membership.java: Static counter for membership ID generation
-- [ ] Update Library.java: Add membership logic, borrowing limits based on type (Basic: 3 books, Premium: 5), track total borrowed per member
+## New Features to Add (Core Functional)
 
-### 2. Book Stock Management
-- [ ] Update ViewBooksPanel.java: Show copies available, alert if stock < 2 (“Low Stock Warning”)
-- [ ] Update Library.java: Auto-update copies on borrow/return
+### Core Functional Features
+- [ ] Add / Edit / Delete Books (Extend AddBookPanel.java and ViewBooksPanel.java for edit/delete)
+- [ ] Add / Edit / Delete Members (students, staff) (New EditUserPanel.java, update MainFrame.java)
+- [ ] Search Books (by title, author, category, or ISBN) (Already in ViewBooksPanel.java, enhance)
+- [ ] View Available Books (Already in ViewBooksPanel.java)
+- [ ] Categorize Books (Fiction, Academic, Technology, etc.) (Already in Book.java, enhance categories)
+- [ ] Track Issued / Returned Books (Already in Library.java)
+- [ ] Manage Due Dates & Return Dates (Already in Book.java)
+- [ ] Calculate Late Fine Automatically (Already in Library.java)
+- [ ] Generate Receipts for Issued Books (Extend BorrowReturnPanel.java for PDF receipts)
+- [ ] Re-Issue / Renew Books (New method in Library.java, update BorrowReturnPanel.java)
 
-### 3. Auto Reminder System
-- [ ] Update MainFrame.java: Check due dates on startup, show JOptionPane for close/overdue
-- [ ] Add EmailUtil.java: Integrate JavaMail for email reminders (advanced)
+### User Management Features
+- [ ] Member Login System (Already in LoginDialog.java)
+- [ ] Librarian/Admin Login Panel (Already role-based)
+- [ ] Student Registration Portal (Extend LoginDialog.java or new RegistrationPanel.java)
+- [ ] Role-based Access Control (Admin / User) (Already in MainFrame.java)
+- [ ] Password Encryption & Reset Option (Update LoginDialog.java with hashing)
+- [ ] Email Notifications (Book Due / Overdue Alerts) (Extend EmailUtil.java)
+- [ ] SMS Notification (optional Twilio API) (New SmsUtil.java)
+- [ ] View Borrowing History (New HistoryPanel.java or extend ActivityLogPanel.java)
+- [ ] User Profile Management (New ProfilePanel.java)
 
-### 4. Book Reservation System
-- [ ] Add Reservation.java: userId, bookId, reserveDate
-- [ ] Update Library.java: Add reservation logic, notify when returned
-- [ ] Add ReservationPanel.java: UI for reserving books
+### GUI Features
+- [ ] Dashboard with Statistics (Already in DashboardPanel.java, add charts)
+- [ ] Book Count, Members Count, Issued Count (Already in StatisticsPanel.java)
+- [ ] Pie / Bar Charts for Reports (Use JFreeChart in ReportPanel.java)
+- [ ] Light / Dark Theme Toggle (Already in ThemeManager.java)
+- [ ] Customizable GUI (Swing/JavaFX Themes) (Extend ThemeManager.java)
+- [ ] Tabbed Navigation (Home, Books, Members, Reports, Settings) (Already in MainFrame.java)
+- [ ] Search Bar with Auto Suggestions (Enhance ViewBooksPanel.java)
+- [ ] Sidebar Menu / Top Navbar (Already top menu in MainFrame.java)
+- [ ] Pop-up Alerts (Book Issued, Due Soon, etc.) (Already in MainFrame.java)
+- [ ] Responsive and Smooth Transitions (Already animated)
 
-### 5. Activity Log / History
-- [ ] Add ActivityLog.java: timestamp, action, details
-- [ ] Update Library.java: Log every borrow/return action
-- [ ] Add ActivityLogPanel.java: JTable to show logs
+### Database & Storage Features
+- [ ] MySQL / SQLite Database Integration (New DatabaseUtil.java, replace serialization)
+- [ ] Entity Relationship between Books, Members, Transactions (In DB schema)
+- [ ] Backup & Restore Database Feature (Extend Storage.java)
+- [ ] Cloud Sync Option (Firebase / Online DB) (New CloudSync.java)
+- [ ] Data Validation (ISBN, Email, IDs) (Add validation in panels)
+- [ ] Auto-Remove Lost/Damaged Books from Inventory (New method in Library.java)
 
-### 6. Generate Reports
-- [ ] Add ReportPanel.java: Export issued/overdue books, members to PDF/CSV using iText
+### Reports & Analytics
+- [ ] Generate Daily / Weekly / Monthly Reports (Extend ReportPanel.java)
+- [ ] Export Reports to PDF / Excel (Already CSV, add PDF/Excel)
+- [ ] Top Borrowed Books Report (New in ReportPanel.java)
+- [ ] Active Readers Report (New in ReportPanel.java)
+- [ ] Overdue Books List (Already in Library.java, add to reports)
+- [ ] Fine Collection Summary (New in ReportPanel.java)
+- [ ] Book Issue Timeline Visualization (Use JFreeChart)
 
-### 7. Smart Recommendation
-- [ ] Update Book.java: Add similarBooks list
-- [ ] Update Library.java: Recommend similar books on borrow
+### Smart / AI Features (Optional Advanced)
+- [ ] AI-based Book Recommendation (Suggest similar books) (Extend Library.java with AI logic)
+- [ ] Chatbot Assistant (Ask for available books or library info) (New ChatbotPanel.java)
+- [ ] Barcode / QR Code Scanner for Book IDs (New ScannerUtil.java with ZXing)
+- [ ] Voice Command Support (Search or Issue Book by Voice) (New VoiceUtil.java)
+- [ ] OCR (Scan Book Cover to Auto-Fill Details) (New OcrUtil.java)
+- [ ] AI-based Auto Email Reminder Generator (Extend EmailUtil.java)
+- [ ] Intelligent Search (Spelling correction + Filters) (Enhance search in ViewBooksPanel.java)
+- [ ] Text-to-Speech for Accessibility (Read Book Titles) (New TtsUtil.java)
+- [ ] Predictive Book Demand (Which books will be in demand next semester) (New PredictiveUtil.java)
+- [ ] AI Assistant for Librarian (Manage records via chat commands) (Extend ChatbotPanel.java)
 
-### 8. Dark Mode / Theme Switcher
-- [ ] Add ThemeManager.java: Persist theme preference in file
-- [ ] Update MainFrame.java: Toggle button with persistent dark/light mode
+### Online Integration Features (Optional)
+- [ ] Online Member Portal (New OnlinePortal.java)
+- [ ] Mobile App Sync (optional with Flutter / React Native) (API endpoints)
+- [ ] Online Book Request / Reservation (Extend ReservationPanel.java)
+- [ ] Push Notifications for Due Dates (Extend NotificationPanel.java)
+- [ ] Online Payment for Fines (UPI / Razorpay Integration) (New PaymentUtil.java)
+- [ ] Email Book Issue Confirmation (Extend EmailUtil.java)
+- [ ] Real-Time Availability Status (Update in real-time)
+- [ ] Online Book Request / Reservation (Already reservations)
 
-### 9. Login & Authentication
-- [ ] Update LoginDialog.java: Add forgot password with security question
-- [ ] Role-based: Admin full, Librarian limited, Student view/borrow only
+### Admin Features
+- [ ] Admin Dashboard (Already DashboardPanel.java)
+- [ ] Manage Librarians / Staff Accounts (Extend user management)
+- [ ] Manage Categories / Departments (New CategoryPanel.java)
+- [ ] View All Transactions (Extend ActivityLogPanel.java)
+- [ ] Block Defaulters (too many late returns) (New in User.java, Library.java)
+- [ ] Database Maintenance Tools (New MaintenancePanel.java)
+- [ ] Audit Log (All Activities Tracking) (Already ActivityLog.java)
+- [ ] System Settings (Theme, Backup, Notifications) (New SettingsPanel.java)
 
-### 10. Online Book Information Fetch
-- [ ] Add ApiUtil.java: Fetch details from Google Books API by ISBN
-- [ ] Update AddBookPanel.java: Auto-fetch on ISBN input
+### Security Features
+- [ ] Login Authentication (Admin / Member) (Already in LoginDialog.java)
+- [ ] Password Hashing (MD5 / bcrypt) (New in LoginDialog.java)
+- [ ] SQL Injection Protection (For DB integration)
+- [ ] Role-based Authorization (Already in MainFrame.java)
+- [ ] Activity Logs (Who did what & when) (Already ActivityLog.java)
+- [ ] Encrypted Database Backup (Extend Storage.java)
+- [ ] Failed Login Attempt Lock (New in LoginDialog.java)
 
-### 11. Dashboard / Home Screen
-- [ ] Add DashboardPanel.java: Summary cards, charts with JFreeChart
-
-### 12. Book Cover Display
-- [ ] Update Book.java: Add coverImagePath
-- [ ] Update AddBookPanel.java: Upload image
-- [ ] Update ViewBooksPanel.java: Show small cover preview
-
-### 13. Fine Payment Record
-- [ ] Update User.java: Fine history with paid/unpaid status
-- [ ] Update BorrowReturnPanel.java: Show fine on return, mark paid
-
-### 14. Forgot Password System
-- [ ] Update LoginDialog.java: Security question reset
-
-### 15. Notification Panel
-- [ ] Add NotificationPanel.java: Sidebar with due/overdue alerts
-
-### 16. Event Calendar
-- [ ] Add CalendarPanel.java: Highlight due dates
-
-### 17. Multi-language Support
-- [ ] Add LanguageManager.java: ResourceBundles for English/Hindi
-
-### 18. Import/Export Data
-- [ ] Update Library.java: Import/export books/users to CSV
-
-### 19. Auto Backup
-- [ ] Update MainFrame.java: Timer for auto-save every few minutes
-
-### 20. About / Help Section
-- [ ] Add AboutPanel.java: Developer info
-
-### Extra Add-ons
-- [ ] Splash Screen: Loading animation on start
-- [ ] Animated transitions: Between panels
-- [ ] Book QR Code: Generate with ZXing
-- [ ] Sound Effects: On issue/return
-- [ ] Cloud Sync: Placeholder for Firebase
+### Extra Creative Features
+- [ ] Reward System for Active Readers (New RewardSystem.java)
+- [ ] Auto-Generated Book Fair Calendar (Extend CalendarPanel.java)
+- [ ] Fine Payment Analytics (Extend ReportPanel.java)
+- [ ] Digital Book Covers Gallery (New GalleryPanel.java)
+- [ ] E-Book Integration (Read Online) (New EBookPanel.java)
+- [ ] Printable Library Cards (New CardUtil.java)
+- [ ] Shelf Management System (Locate Book in Library) (New ShelfPanel.java)
+- [ ] Duplicate Entry Detection (Add in AddBookPanel.java)
+- [ ] QR Code on Library ID Cards (Extend CardUtil.java)
+- [ ] Multilingual Interface Support (Already LanguageManager.java, add more languages)
+- [ ] Bonus Add-ons: AI Assistant for Book Search, Speech-to-Text Issue Request, Integration with Google Books API (Already ApiUtil.java), Live Notifications Panel, Book Recommendation Engine (Extend), Firebase Cloud Backup (Extend CloudSync.java), Real-time Graphs Dashboard (Extend DashboardPanel.java), Smart Filtering & Sorting (Enhance ViewBooksPanel.java), Customizable Themes (Extend ThemeManager.java)
 
 ### Dependencies & Setup
-- [ ] Install libraries: iText (PDF), JFreeChart (charts), JavaMail (email), ZXing (QR), download jars and add to classpath
+- [ ] Install libraries: iText (PDF), JFreeChart (charts), JavaMail (email), ZXing (QR), Twilio (SMS), Firebase (cloud), Apache POI (Excel), Tesseract (OCR), Sphinx (voice), download jars and add to classpath
 
 ### Testing
-- [ ] Test all features: Membership limits, stock alerts, reservations, logs, reports, themes, notifications, etc.
-- [ ] Run app to verify integrations
+- [ ] Test all new features: Edit/delete, user management, search enhancements, reports, AI, online, admin, security, creative features.
+- [ ] Run app to verify integrations, handle errors, ensure UI consistency.

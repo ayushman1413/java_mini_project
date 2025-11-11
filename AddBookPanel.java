@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import org.json.JSONObject;
 
 public class AddBookPanel extends JPanel {
     public AddBookPanel(Library library) {
@@ -45,11 +46,14 @@ public class AddBookPanel extends JPanel {
             String isbn = isbnField.getText().trim();
             if (!isbn.isEmpty()) {
                 try {
-                    String[] info = ApiUtil.fetchBookInfo(isbn);
+                    JSONObject info = ApiUtil.fetchBookInfo(isbn);
                     if (info != null) {
-                        titleField.setText(info[0]);
-                        authorField.setText(info[1]);
-                        categoryCombo.setSelectedItem(info[2]);
+                        titleField.setText(info.optString("title", ""));
+                        if (info.has("authors") && info.getJSONArray("authors").length() > 0) {
+                            authorField.setText(info.getJSONArray("authors").getString(0));
+                        }
+                        // Category not directly available, set to default or parse description
+                        categoryCombo.setSelectedItem("Other");
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, "Failed to fetch info: " + ex.getMessage());
