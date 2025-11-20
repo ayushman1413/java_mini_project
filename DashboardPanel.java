@@ -4,7 +4,6 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
-
 public class DashboardPanel extends JPanel {
     private Library library;
 
@@ -12,7 +11,6 @@ public class DashboardPanel extends JPanel {
         this.library = library;
         setLayout(new BorderLayout());
 
-        // Summary cards
         JPanel cards = new JPanel(new GridLayout(1,4));
         cards.add(createCard("Total Books", String.valueOf(library.getTotalBooks())));
         cards.add(createCard("Issued Books", String.valueOf(library.getIssuedBooks())));

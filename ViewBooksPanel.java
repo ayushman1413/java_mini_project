@@ -17,7 +17,6 @@ public class ViewBooksPanel extends JPanel {
         this.library = library;
         setLayout(new BorderLayout());
 
-        // Search panel
         JPanel searchPanel = new JPanel(new FlowLayout());
         searchPanel.add(new JLabel("Search:"));
         searchField = new JTextField(20);
