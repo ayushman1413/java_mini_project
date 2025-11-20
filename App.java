@@ -3,7 +3,6 @@ import java.awt.*;
 
 public class App {
     public static void main(String[] args) {
-        // Splash screen
         JWindow splash = new JWindow();
         JLabel splashLabel = new JLabel("Loading Library Management System...", SwingConstants.CENTER);
         splashLabel.setFont(new Font("Arial", Font.BOLD, 16));
@@ -13,7 +12,7 @@ public class App {
         splash.setVisible(true);
 
         try {
-            Thread.sleep(2000); // Simulate loading
+            Thread.sleep(2000); 
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -22,22 +21,19 @@ public class App {
         // Load saved data
         Library library = Storage.load("library_data.ser");
 
-        // If no users, add a default admin
         if (library.listAllUsers().isEmpty()) {
             User admin = library.addUser("Admin", "admin@example.com", "1234567890", "Admin", "ADM001");
             admin.securityQuestion = "What is your favorite color?";
             admin.securityAnswer = "blue";
         }
 
-        // Show login dialog
         LoginDialog loginDialog = new LoginDialog(null, library);
         loginDialog.setVisible(true);
         User loggedInUser = loginDialog.getLoggedInUser();
         if (loggedInUser == null) {
-            System.exit(0); // Exit if no login
+            System.exit(0);
         }
 
-        // Run UI on EDT
         SwingUtilities.invokeLater(() -> {
             new MainFrame(library, loggedInUser);
         });
