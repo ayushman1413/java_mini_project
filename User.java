@@ -10,7 +10,7 @@ public class User implements Serializable {
     public String name;
     public String email;
     public String phone;
-    public String role; // "Admin", "Librarian", "Student"
+    public String role; 
     public String studentId;
     public int membershipId;
     public String membershipType; // "Basic" or "Premium"
