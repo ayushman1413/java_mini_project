@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-
 public class AboutPanel extends JPanel {
     public AboutPanel() {
         setLayout(new BorderLayout());
