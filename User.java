@@ -15,10 +15,9 @@ public class User implements Serializable {
     public int membershipId;
     public String membershipType; 
     public int totalBooksBorrowed;
-    public List<Map<String, Object>> fineHistory; // list of maps: {date, amount, paid}
+    public List<Map<String, Object>> fineHistory;
     public String securityQuestion;
     public String securityAnswer;
-
     public User(int id, String name, String email, String phone, String role, String studentId) {
         this.id = id;
         this.name = name;
