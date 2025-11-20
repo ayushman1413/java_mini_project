@@ -13,7 +13,7 @@ public class User implements Serializable {
     public String role; 
     public String studentId;
     public int membershipId;
-    public String membershipType; // "Basic" or "Premium"
+    public String membershipType; 
     public int totalBooksBorrowed;
     public List<Map<String, Object>> fineHistory; // list of maps: {date, amount, paid}
     public String securityQuestion;
@@ -33,11 +33,9 @@ public class User implements Serializable {
         this.securityQuestion = null;
         this.securityAnswer = null;
     }
-
     public int getBorrowingLimit() {
         return "Premium".equals(membershipType) ? 5 : 3;
     }
-
     @Override
     public String toString() {
         return String.format("[%d] %s (%s) - Membership: %s (%d)", id, name, role, membershipType, membershipId);
