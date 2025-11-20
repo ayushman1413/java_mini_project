@@ -12,11 +12,11 @@ public class Book implements Serializable {
     public String isbn;
     public int copiesAvailable;
     public boolean isBorrowed;
-    public Integer borrowedByUserId; // null if available
-    public LocalDate borrowDate; // use LocalDate for better date handling
-    public LocalDate dueDate; // due date for borrowed books
+    public Integer borrowedByUserId;
+    public LocalDate borrowDate;
+    public LocalDate dueDate;
     public String coverImagePath;
-    public List<String> similarBooks; // list of similar book titles
+    public List<String> similarBooks; 
 
     public Book(int id, String title, String author, String category, String isbn, int copies) {
         this.id = id;

@@ -19,8 +19,6 @@ public class DashboardPanel extends JPanel {
         cards.add(createCard("Available Books", String.valueOf(library.getAvailableBooks())));
         cards.add(createCard("Active Users", String.valueOf(library.getActiveUsers())));
         add(cards, BorderLayout.NORTH);
-
-        // Chart
         DefaultPieDataset dataset = new DefaultPieDataset();
         dataset.setValue("Available", library.getAvailableBooks());
         dataset.setValue("Issued", library.getIssuedBooks());
